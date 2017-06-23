@@ -6,7 +6,8 @@
 	<title>Home</title>
 </head>
 <body>
-<h1>
+<a href="notice/noticeList">Notice List </a>
+<h1> 
 	Hello world!  
 </h1>
 

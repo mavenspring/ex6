@@ -8,16 +8,22 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function() {
+		
 		var count =0;
 		$("#add").click(function() {
 			count++;
 			if(count <6){
-				var data = '<p id="p'+count+'"><input type="file" name="f1"><span id="delete">X</span><p>';
+				var data = '<p><input type="file" name="f'+count+'"><span class="del">X</span><p>';
 				$("#file").append(data);				
 			}else{
 				alert("최대 5개만 가능");
+				count=5;
 			}
 		});
+		$("#file").on("click",".del",function(){
+			$(this).parent().remove();
+			count--;
+		})
 		
 	});
 
