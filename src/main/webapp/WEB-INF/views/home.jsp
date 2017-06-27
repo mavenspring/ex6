@@ -7,6 +7,7 @@
 </head>
 <body>
 <a href="notice/noticeList">Notice List </a>
+<a href="memo/memoList">Memo</a>
 <h1> 
 	Hello world!  
 </h1>
