@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,6 +36,9 @@ public class NoticeController {
 	public String noticeList(Model model, ListInfo listInfo)throws Exception{
 		
 		List<BoardDTO> ar = noticeService.boardList(listInfo);
+		System.out.println(ar.get(1000).getTitle());
+		
+		
 		model.addAttribute("list", ar);
 		model.addAttribute("board", "notice");
 		model.addAttribute("listInfo", listInfo);
@@ -114,5 +118,6 @@ public class NoticeController {
 		
 		return "redirect:noticeList?curPage=1";
 	}
+	
 	
 }
