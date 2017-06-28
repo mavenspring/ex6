@@ -3,9 +3,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
 	<!-- 공통 로직 -->
 	<!-- <bean class="com.choa.aspect.CardCheck" id="cardCheck"/> -->
@@ -61,6 +63,34 @@
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryBean"></constructor-arg>
 	</bean>
 	
+	
+	<!-- Transaction 1.XML -->
+	<!-- 공통 로직이들어갈곳 -->
+	 <bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="txManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<!-- Transaction방법2. Annotation  -->
+	<tx:annotation-driven transaction-manager="txManager" />
+	
+	
+	<!-- 외부 advice -->
+	<!-- <tx:advice id="txAdivce" transaction-manager="txManager" >
+		<tx:attributes>
+			<tx:method name="*" rollback-for="Exception"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<aop:config>
+		<aop:pointcut expression="execution(* com.choa.table..TableService.*(..))" id="requiredTx"/>
+		외부 advice를 연결
+		<aop:advisor advice-ref="txAdivce" pointcut-ref="requiredTx"/>
+	</aop:config> -->
+	
+	
+	
+	
+	<!-- Download -->
 	<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
 		<property name="defaultEncoding" value="UTF-8"></property>
 	</bean>
